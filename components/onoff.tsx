@@ -1,9 +1,6 @@
 import Switch from '../components/switch'
 import Link from 'next/link';
 
-
-import { Power, Biohazard } from 'lucide-react';
-
 const onoff = () => {
     return(
         <>
