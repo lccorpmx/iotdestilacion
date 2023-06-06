@@ -6,7 +6,6 @@ interface CardProps {
   valor:number
   icono:string
 }
-
 const renderIcon = (icono: string) => {
   switch(icono){
     case 'temp':
