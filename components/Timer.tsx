@@ -36,7 +36,6 @@ const Timer = () => {
     setSeconds(21000);
     setIsRunning(false);
   };
-
   return (
     <div className="text-center pt-2">
       <h1 className="text-3xl mb-4">Tiempo Restante: {seconds}s</h1>
