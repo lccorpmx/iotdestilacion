@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { Thermometer, Gauge, Waves } from 'lucide-react';
-
 interface CardProps {
   titulo:string
   valor:number
