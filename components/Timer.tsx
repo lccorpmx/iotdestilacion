@@ -19,7 +19,6 @@ const Timer = () => {
     } else {
       clearInterval(interval);
     }
-
     return () => {
       clearInterval(interval);
     };

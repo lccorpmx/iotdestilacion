@@ -21,11 +21,12 @@ export default function Proceso() {
 
   useEffect(() => {
     const newClient = mqtt.connect(brokerUrl, { clientId });
+    console.log(clientId)
 
     newClient.on('connect', () => {
       console.log('Conexión MQTT establecida');
       // Suscribirse a los temas correspondientes
-      newClient.subscribe(['titulo', 'valor']);
+      newClient.subscribe(['titulo']);
     
     });
 

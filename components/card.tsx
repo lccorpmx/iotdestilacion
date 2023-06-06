@@ -13,12 +13,9 @@ export default function Card({ titulo, valor }: CardProps) {
   const [value, setValue] = useState(valor);
   const [client, setClient] = useState<mqtt.MqttClient | null>(null);
 
+  
   const sendParameters = (titulo: string, valor: number) => {
-    if (client) {
-      client.publish('titulo', titulo.toString());
-      client.publish('valor', valor.toString());
     
-    }
   };
 
   const handleIncrement = () => {
@@ -34,11 +31,31 @@ export default function Card({ titulo, valor }: CardProps) {
 
     newClient.on('connect', () => {
       console.log('Conexión MQTT establecida');
+
+
+      newClient.subscribe('tituloooo', (error) => {
+        if (error) {
+          console.error('Error al suscribirse al tópico:', error);
+        } else {
+          console.log('Suscrito al tópico tituloooo');
+        }
+      });
     });
 
     newClient.on('error', (error) => {
       console.error('Error en la conexión MQTT:', error);
     });
+
+
+    newClient.subscribe('tituloooo', (topic, message) => {
+      console.log(`Mensaje recibido en el tópico ${topic}: ${message.toString()}`);
+    });
+
+
+    const titulooo = newClient.subscribe(['tituloooo']);
+
+
+    console.log(titulooo);
 
     setClient(newClient);
 
