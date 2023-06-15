@@ -1,13 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Dispatch, SetStateAction, useRef } from "react";
 
-const Timer = () => {
-  const [seconds, setSeconds] = useState(21000);
+interface CardProps {
+  seconds: number;
+  setSeconds: Dispatch<SetStateAction<number>>;
+}
+
+const Timer = ({ seconds, setSeconds }: CardProps) => {
+  const secondRef = useRef(seconds)
   const [isRunning, setIsRunning] = useState(false);
 
   useEffect(() => {
-    let interval = null;
-
+    let interval: any;
     if (isRunning) {
+      // console.log(seconds)
       interval = setInterval(() => {
         setSeconds((prevSeconds) => prevSeconds - 1);
       }, 1000);
@@ -33,9 +38,11 @@ const Timer = () => {
   };
 
   const handleReset = () => {
-    setSeconds(21000);
+    setSeconds(secondRef.current);
     setIsRunning(false);
   };
+
+  console.log("render timer");
   return (
     <div className="text-center pt-2">
       <h1 className="text-3xl mb-4">Tiempo Restante: {seconds}s</h1>
@@ -60,7 +67,9 @@ const Timer = () => {
       >
         Reset
       </button>
-      {seconds === 0 && <p className="text-red-500 mt-4">¡El Proceso Ha Terminado!</p>}
+      {seconds === 0 && (
+        <p className="text-red-500 mt-4">¡El Proceso Ha Terminado!</p>
+      )}
     </div>
   );
 };
